@@ -1,11 +1,16 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import NavigationBar from './components/NavigationBar.vue'
+
+import HeaderBar from './components/HeaderBar.vue'
+import Sidebar from '@/components/Sidebar.vue'
 </script>
 
 <template>
-  <div class="container">
-    <navigation-bar></navigation-bar>
-    <RouterView />
+  <div class="d-flex">
+    <sidebar></sidebar>
+    <div class="w-100">
+      <header-bar></header-bar>
+      <RouterView />
+    </div>
   </div>
 </template>
