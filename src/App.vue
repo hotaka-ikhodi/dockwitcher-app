@@ -4,6 +4,8 @@ import { RouterLink, RouterView } from 'vue-router'
 import HeaderBar from './components/HeaderBar.vue'
 import Sidebar from '@/components/Sidebar.vue'
 import NavigationBar from './components/NavigationBar.vue';
+import Table from './components/Table.vue'
+
 </script>
 
 <template>
@@ -20,11 +22,12 @@ import NavigationBar from './components/NavigationBar.vue';
       <div class="headers">
         <HeaderBar />
         <div class="line"></div>
-        <NavigationBar />
+        <NavigationBar />  
+        <!------------ ELIMINAR ---------- Componente Table para la visualizacion previa  -->
+        <Table />  
       </div>
       <body>
-        
       </body>
-    </div>
+    </div> 
   </main>
 </template>
