@@ -11,7 +11,6 @@
         <span>- Planificación</span><span class="enabled">- Recepciones</span>
       </li>
       <li>
-        <button class="button">Nuevo</button>
         <button class="button">Importar</button>
       </li>
     </ul>
