@@ -1,12 +1,10 @@
 <script setup>
-
 defineProps({
-      items: {
-      type: Array,
-      default: () => []
-    }
-});
-
+  items: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>
 
 <template>
@@ -23,5 +21,3 @@ defineProps({
     </tbody>
   </table>
 </template>
-
-
