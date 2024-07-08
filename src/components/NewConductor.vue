@@ -1,103 +1,121 @@
+<!--<script setup>
+import { ref } from 'vue'
+const formaciones = ref([])
+const nuevaFormacion = ref('')
+const addFormacion = () => {
+  formaciones.value.push(nuevaFormacion.value)
+  nuevaFormacion.value = ''
+}
+</script>-->
+
 <template>
-    <div><h2>Form</h2></div>
     <div>
       <h2>Formulario Nuevo Conductor</h2>
     </div>
-    <div>
-      <form>
-        <div class="mb-3 row">
-          <label for="nombreConductor" class="col-sm-2 col-form-label">Nombre Completo</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="nombreConductor" required />
-          </div>
+    <div class="container">
+      <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-4">
+          <label for="NombreConductor" class="form-label">Nombre Completo</label>
+          <input type="text" class="form-control" id="NombreConductor" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="numIdentificacionConductor" class="col-sm-2 col-form-label"
+        <div class="col-md-4">
+          <label for="" class="numIdentificacionConductor"
             >Número Identificación (DNI, SSN, etc.)</label
           >
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="numIdentificacionConductor" />
-          </div>
+          <input type="text" class="form-control" id="numIdentificacionConductor" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="numLicenciaConductor" class="col-sm-2 col-form-label">Número de Licencia</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="numLicenciaConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="numLicenciaConductor">Número de Licencia</label>
+          <input type="text" class="form-control" id="numLicenciaConductor" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="categLicencia" class="col-sm-2 col-form-label">Categoría de Licencia</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="categLicencia" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="categLicencia">Categoría de Licencia</label>
+          <input type="text" class="form-control" id="categLicencia" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="fechaCaducidad" class="col-sm-2 col-form-label">Fecha Caducidad Licencia</label>
-          <div class="col-sm-10">
-            <input type="date" class="form-control" id="fechaCaducidad" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="fechaCaducLicencia">Fecha caducidad de Licencia</label>
+          <input type="date" class="form-control" id="fechaCaducLicencia" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="telefonoConductor" class="col-sm-2 col-form-label">Teléfono</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="telefonoConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="categLicencia">Categoría de Licencia</label>
+          <input type="text" class="form-control" id="categLicencia" required />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Es necesario ingresar el Nombre completo del conductor</div>
         </div>
-        <div class="mb-3 row">
-          <label for="emailConductor" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="emailConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="telConductor">Teléfono</label>
+          <input type="text" class="form-control" id="telConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-        
-        <!--var formaciones: List<String> = mutableListOf()-->
-        <div class="mb-3 row">
-          <label for="formacionConductor" class="col-sm-2 col-form-label">Formaciones</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="formacionConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="emailConductor">Email</label>
+          <input type="email" class="form-control" id="emailConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-        <div class="mb-3 row">
-          <label for="observacionesConductor" class="col-sm-2 col-form-label">Observaciones</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="observacionesConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="formacionesConductor">Formaciones</label>
+          <input type="email" class="form-control" id="formacionesConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-  
-        <!--var experiencia: Experiencia = Experiencia()-->
-        <div class="mb-3 row">
-          <label for="experienciaConductor" class="col-sm-2 col-form-label">Experiencias</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="experienciaConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="observacionesConductor">Observaciones</label>
+          <input type="email" class="form-control" id="observacionesConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-        <div class="mb-3 row">
-          <label for="disponibilidadConductor" class="col-sm-2 col-form-label">Disponibilidad</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="disponibilidadConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="experienciaConductor">Experiencia</label>
+          <input type="email" class="form-control" id="experienciaConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-  
-        <!--var historial: List<Incidentes> = mutableListOf()-->
-  
-          <div class="mb-3 row">
-          <label for="historialdConductor" class="col-sm-2 col-form-label">Historias</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="historialdConductor" />
-          </div>
+        <div class="col-md-4">
+          <label for="" class="disponibilidadConductor">Disponibilidad</label>
+          <input type="email" class="form-control" id="disponibilidadConductor" />
+          <div class="valid-feedback">Looks good!</div>
         </div>
-  
+        <div class="col-12">
+          <label for="" class="historialConductor">Historial</label>
+          <input type="email" class="form-control" id="historialConductor" />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-outline-secondary" type="submit">Nuevo</button>
+        </div>
       </form>
     </div>
   </template>
-  
   <script>
-  export default {
-    name: 'FormConductor',
-    data() {
-      return {}
-    }
-  }
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  ;(function () {
+    'use strict'
   
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener(
+        'submit',
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        },
+        false
+      )
+    })
+  })()
   </script>
   
