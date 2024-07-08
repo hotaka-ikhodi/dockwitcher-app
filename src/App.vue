@@ -14,8 +14,7 @@ import NavigationBar from './components/NavigationBar.vue'
       <div class="line"></div>
       <NavigationBar />
     </div>
-    <div class="container">
-      <h1>Hola</h1>
+    <div class="container workarea">
       <RouterView />
     </div>
   </div>
