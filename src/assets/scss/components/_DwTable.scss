@@ -1,0 +1,58 @@
+.dw-table {
+    position: absolute;
+    top: 170px; /* Ajusta según sea necesario para que coincida con tu diseño */
+    left: 250px; /* Ajusta según el ancho de tu sidebar */
+    right: 20px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    z-index: 5; /* Asegura que la tabla esté debajo del header */
+  }
+
+.dw-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .dw-table th, .dw-table td {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }  
+
+  .dw-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .dw-table-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .dw-table-controls select {
+    mix-blend-mode: normal; 
+    color: rgb(18, 18, 18); 
+    padding: 2px 20px; 
+    border-width: 1px; 
+    border-color: rgb(140, 140, 140); 
+    border-radius: 4px; 
+    border-style: solid; 
+    font-size: 15px; 
+    font-weight: normal; 
+    font-style: normal; 
+    text-align: left; 
+    text-align-last: left;
+  }
+
+  .dw-table-controls label {
+    margin-left: 10px;
+  }
+
+  .search-input {
+    margin-left: auto;
+    width: 200px;
+  }

@@ -34,8 +34,10 @@ import DockwitcherLogo from './icons/DockwitcherLogo.vue'
           </div>
           <div class="collapse" id="collapseExample">
             <div>
-              <a href="#">Camiones</a>
-              <a href="#">Conductores</a>
+              <RouterLink to="/trucks">Camiones</RouterLink>
+            </div>  
+            <div> 
+              <RouterLink to='/drivers'>Conductores</RouterLink>
             </div>
           </div>
         </li>
