@@ -63,9 +63,9 @@ import { RouterLink } from 'vue-router'
           </div>
           <div class="collapse" id="collapsePlanificacion">
             <div>
-              <p><a href="#">Panel</a></p>
-              <p><a href="#">Recepciones</a></p>
-              <p><a href="#">Expediciones</a></p>
+              <p><a href=" /planning/dashboard">Panel</a></p>
+              <p><a href="/planning/incommings">Recepciones</a></p>
+              <p><a href="/planning/outgoings">Expediciones</a></p>
             </div>
           </div>
         </li>
