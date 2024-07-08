@@ -11,7 +11,7 @@
         <span class="ms-1 fs-5 fw-medium">- Planificación</span><span class="enabled ms-1 fs-5 fw-medium">- Recepciones</span>
       </li>
       <li>
-        <button class="button">Importar</button>
+        <button class="btn btn-navigation-bar">Importar</button>
       </li>
     </ul>
   </nav>
