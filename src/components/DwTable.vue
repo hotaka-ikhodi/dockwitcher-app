@@ -16,7 +16,7 @@ defineProps({
 
 <template>
     <table class="table">
-      <thead>
+      <thead class="table-light text-uppercase">
         <tr>
           <slot name="header"></slot>
         </tr>
