@@ -43,16 +43,6 @@
         />
       </div>
       <div class="col-md-4">
-        <label for="" class="categLicencia">Categoría de Licencia</label>
-        <Field
-          name="categoriaLicencia"
-          type="text"
-          class="form-control"
-          id="categLicencia"
-          required
-        />
-      </div>
-      <div class="col-md-4">
         <label for="" class="telConductor">Teléfono</label>
         <input type="text" class="form-control" id="telConductor" />
       </div>
@@ -63,28 +53,28 @@
       </div>
       <div class="col-md-4">
         <label for="" class="formacionesConductor">Formaciones</label>
-        <Field name="formacion" type="email" class="form-control" id="formacionesConductor" />
+        <Field name="formacion" type="text" class="form-control" id="formacionesConductor" />
       </div>
       <div class="col-md-4">
         <label for="" class="observacionesConductor">Observaciones</label>
-        <Field name="observacion" type="email" class="form-control" id="observacionesConductor" />
+        <Field name="observacion" type="text" class="form-control" id="observacionesConductor" />
       </div>
       <div class="col-md-4">
         <label for="" class="experienciaConductor">Experiencia</label>
-        <Field name="experiencia" type="email" class="form-control" id="experienciaConductor" />
+        <Field name="experiencia" type="text" class="form-control" id="experienciaConductor" />
       </div>
       <div class="col-md-4">
         <label for="" class="disponibilidadConductor">Disponibilidad</label>
         <Field
           name="disponibilidad"
-          type="email"
+          type="text"
           class="form-control"
           id="disponibilidadConductor"
         />
       </div>
-      <div class="col-12">
+      <div class="col-md-4">
         <label for="" class="historialConductor">Historial</label>
-        <Field name="historial" type="email" class="form-control" id="historialConductor" />
+        <Field name="historial" type="text" class="form-control" id="historialConductor" />
       </div>
       <div class="col-12">
         <button class="btn btn-outline-secondary" type="submit">Nuevo</button>
