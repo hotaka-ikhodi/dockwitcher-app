@@ -5,8 +5,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import IncommingsView from '@/views/IncommingsView.vue'
 import OutgoingsView from '@/views/OutgoingsView.vue'
 import TrucksView from '@/views/TrucksView.vue'
-import TestTableView from '@/views/TestTableView.vue'
-// import DriversView from '@/views/DriversView.vue'
+import DriversView from '@/views/DriversView.vue'
 import PlanningView from '@/views/PlanningView.vue'
 
 const router = createRouter({
@@ -57,7 +56,7 @@ const router = createRouter({
     {
       path: '/drivers',
       name: 'drivers',
-      component: TestTableView
+      component: DriversView
     }
     
   ]
