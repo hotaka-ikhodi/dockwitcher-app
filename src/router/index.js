@@ -58,6 +58,7 @@ const router = createRouter({
       name: 'drivers',
       component: DriversView
     }
+    
   ]
 })
 

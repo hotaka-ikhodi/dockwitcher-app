@@ -8,7 +8,6 @@ const props = defineProps({
 
 const emits = defineEmits(['update:currentPage', 'update:totalItems', 'update:items', 'update:totalPages'])
 
-const PAGES_TO_SHOW = 5
 const currentPage = ref(1)
 const totalPages = ref(0)
 const totalItems = ref(0)
@@ -18,10 +17,11 @@ const fetchData = async (page, size) => {
   try {
     const response = await axios.get(`http://localhost:8080/conductores`, {
       params: {
-        page: page - 1, // La API espera que la paginación comience en 0
+        page: page - 1, // La API puede esperar que la paginación comience en 0
         size,
       }
     })
+    // Actualiza el estado de tu componente con la respuesta
     totalPages.value = response.data.totalPages
     totalItems.value = response.data.totalElements
     items.value = response.data.content
@@ -35,16 +35,17 @@ const fetchData = async (page, size) => {
   }
 }
 
+
 const changePage = (page) => {
-  page = Math.max(1, Math.min(page, totalPages.value))
-  currentPage.value = page
-  fetchData(page, props.pageSize)
-  emits('update:currentPage', page)
+    page = Math.max(1, Math.min(page, totalPages.value))
+    currentPage.value = page
+    fetchData(page, props.pageSize)
+    emits('update:currentPage', page)
 }
+
 const getPagesToShow = () => {
-  // Si el total de páginas es menor a 5, muestra todas las páginas sino solo muestra 5
-  const pageRange = totalPages.value < PAGES_TO_SHOW ? totalPages.value : PAGES_TO_SHOW
-  const startPage = Math.max(1, Math.min(currentPage.value - 2, totalPages.value - pageRange + 1))
+  const pageRange = totalPages.value < 5 ? totalPages.value : 5
+  const startPage = Math.max(1, Math.min( currentPage.value - 2, totalPages.value - pageRange + 1))
   return [...Array(pageRange)].map((_, i) => startPage + i)
 }
 
