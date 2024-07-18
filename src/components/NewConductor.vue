@@ -6,75 +6,130 @@
     <Form class="row g-3" @submit="onSubmit">
       <div class="col-md-4">
         <label for="NombreConductor">Nombre Completo</label>
-        <Field name="nombre" type="text" class="form-control" id="NombreConductor" required />
-      </div>
-      <div class="col-md-4">
-        <label for="">Número Identificación (DNI, SSN)</label>
         <Field
-          name="numIdentificacion"
+          name="nombre"
           type="text"
+          v-model="conductor.nombreConductor"
+          rules="required"
           class="form-control"
-          id="numIdentificacionConductor"
-          required
+          id="NombreConductor"
         />
       </div>
       <div class="col-md-4">
-        <label for="" class="numLicenciaConductor">Número de Licencia</label>
+        <label for="numIdentificacionConductor">Número Identificación (DNI, SSN)</label>
+        <Field
+          name="numIdentificacion"
+          type="text"
+          v-model="conductor.numIdentificacion"
+          class="form-control"
+          id="numIdentificacionConductor"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="numLicenciaConductor">Número de Licencia</label>
         <Field
           name="numLicencia"
           type="text"
+          v-model="conductor.numLicencia"
           class="form-control"
           id="numLicenciaConductor"
           required
         />
       </div>
       <div class="col-md-4">
-        <label for="" class="categLicencia">Categoría de Licencia</label>
-        <Field name="catLicencia" type="text" class="form-control" id="categLicencia" required />
+        <label for="categLicencia">Categoría de Licencia</label>
+        <Field
+          name="catLicencia"
+          type="text"
+          v-model="conductor.catLicencia"
+          class="form-control"
+          id="categLicencia"
+          required
+        />
       </div>
       <div class="col-md-4">
-        <label for="" class="fechaCaducLicencia">Fecha caducidad de Licencia</label>
+        <label for="fechaCaducLicencia">Fecha caducidad de Licencia</label>
         <Field
           name="fechaCaducidad"
           type="date"
+          v-model="conductor.fechaCaducidad"
           class="form-control"
           id="fechaCaducLicencia"
           required
         />
       </div>
       <div class="col-md-4">
-        <label for="" class="telConductor">Teléfono</label>
-        <input type="text" class="form-control" id="telConductor" />
+        <label for="telConductor">Teléfono</label>
+        <input type="text" v-model="conductor.telefono" class="form-control" id="telConductor" />
       </div>
       <div class="col-md-4">
-        <label for="">Email</label>
-        <Field name="emailCond" type="email" :rules="validateEmail" class="form-control" id="emailConductor" />
+        <label for="emailConductor">Email</label>
+        <Field
+          name="emailCond"
+          type="email"
+          v-model="conductor.email"
+          :rules="validateEmail"
+          class="form-control"
+          id="emailConductor"
+        />
         <ErrorMessage name="emailCond" />
       </div>
       <div class="col-md-4">
-        <label for="" class="formacionesConductor">Formaciones</label>
-        <Field name="formacion" type="text" class="form-control" id="formacionesConductor" />
+        <label for="formacionesConductor">Formaciones</label>
+        <Field
+          name="formacion"
+          type="text"
+          v-model="formacion"
+          class="form-control"
+          id="formacionesConductor"
+        />
+        <button v-on:click="agregarFormacion()">Agregar</button>
+        <div>
+        <ul>
+          <li v-for="(elem, index) in conductor.formaciones" :key="index">{{ elem }}</li>
+        </ul>
+      </div>
+      </div>
+     
+      <div class="col-md-4">
+        <label for="observacionesConductor">Observaciones</label>
+        <Field
+          name="observacion"
+          type="text"
+          v-model="conductor.observaciones"
+          class="form-control"
+          id="observacionesConductor"
+        />
       </div>
       <div class="col-md-4">
-        <label for="" class="observacionesConductor">Observaciones</label>
-        <Field name="observacion" type="text" class="form-control" id="observacionesConductor" />
+        <label for="experienciaConductor">Experiencia</label>
+        <Field
+          name="experiencia"
+          type="text"
+          v-model="conductor.experiencia"
+          class="form-control"
+          id="experienciaConductor"
+        />
       </div>
       <div class="col-md-4">
-        <label for="" class="experienciaConductor">Experiencia</label>
-        <Field name="experiencia" type="text" class="form-control" id="experienciaConductor" />
-      </div>
-      <div class="col-md-4">
-        <label for="" class="disponibilidadConductor">Disponibilidad</label>
+        <label for="disponibilidadConductor">Disponibilidad</label>
         <Field
           name="disponibilidad"
           type="text"
+          v-model="conductor.disponibilidad"
           class="form-control"
           id="disponibilidadConductor"
         />
       </div>
       <div class="col-md-4">
-        <label for="" class="historialConductor">Historial</label>
-        <Field name="historial" type="text" class="form-control" id="historialConductor" />
+        <label for="historialConductor">Historial</label>
+        <Field
+          name="historial"
+          type="text"
+          v-model="conductor.historial"
+          class="form-control"
+          id="historialConductor"
+        />
       </div>
       <div class="col-12">
         <button class="btn btn-outline-secondary" type="submit">Nuevo</button>
@@ -83,13 +138,51 @@
   </div>
 </template>
 
+<script setup>
+import { ref } from 'vue'
+
+let conductor = ref({
+  nombreConductor: '',
+  numIdentificacion: '',
+  numLicencia: '',
+  catLicencia: '',
+  fechaCaducidad: '',
+  telefono: '',
+  email: '',
+  formaciones: [],
+  observaciones: '',
+  experiencia: '',
+  disponibilidad: '',
+  historial: ''
+})
+
+let formacion = ref('')
+
+const agregarFormacion = () => {
+  conductor.value.formaciones.push(formacion.value)
+  formacion.value=''
+  
+}
+</script>
+
+
+
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
+import { defineRule } from 'vee-validate'
+
+defineRule('required', (value) => {
+  if (!value || !value.length) {
+    return 'This field is required'
+  }
+  return true
+})
+
 export default {
   components: {
     Field,
     Form,
-    ErrorMessage,
+    ErrorMessage
   },
   methods: {
     onSubmit(values) {
