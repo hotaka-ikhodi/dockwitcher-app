@@ -1,56 +1,65 @@
 <script setup>
-import { ref } from 'vue';
-import { format } from 'date-fns';
-import DwTable from '@/components/DwTable.vue';
-import Pagination from '@/components/Pagination.vue';
+import { ref, onMounted } from 'vue'
+import { format } from 'date-fns'
+import DwTable from '@/components/DwTable.vue'
+import Pagination from '@/components/Pagination.vue'
+import { driversStore } from '@/_stores/driversStore'
+import { storeToRefs } from 'pinia'
 
-const currentPage = ref(1); // pageable.pageNumber
-const totalItems = ref(0);  // totalElements
-const totalPages = ref(0); // totalPages
-const items = ref([]); // content
-const pageSize = ref(10); // pageable.pageSize
+const currentPage = ref(1) // pageable.pageNumber
+const totalItems = ref(0) // totalElements
+const totalPages = ref(0) // totalPages
+const items = ref([]) // content
+const pageSize = ref(10) // pageable.pageSize
 
+const store = driversStore()
+const { content, pagination, sort } = storeToRefs(store)
 
 const updateCurrentPage = (page) => {
-  currentPage.value = page;
-};
+  currentPage.value = page
+}
 
 const updatePageSize = (event) => {
-  pageSize.value = parseInt(event.target.value);
-};
+  pageSize.value = parseInt(event.target.value)
+}
 
 const updateTotalPages = (pages) => {
-  totalPages.value = pages;
-};
+  totalPages.value = pages
+}
 
 const updateItems = (content) => {
-  items.value = content;
-};
+  items.value = content
+}
 
 const updateTotalItems = (cantItems) => {
-  totalItems.value = cantItems;
-};
+  totalItems.value = cantItems
+}
 
 const formatDate = (date) => {
   // Verifica si date es null
   if (!date) {
-    return "N/D"; 
+    return 'N/D'
   }
-  return format(new Date(date), 'dd/MM/yyyy');
-};
+  return format(new Date(date), 'dd/MM/yyyy')
+}
 
+onMounted(() => {
+  store.getDrivers(0, 10, 'nombre', 'asc');
+})
+
+function changePage(page) {
+  store.getDrivers(page, 10, 'nombre', 'asc');
+}
 </script>
 
 <template>
-  <div class="dw-table-container ">
+  <div class="dw-table-container">
     <div class="p-3 d-flex justify-content-between">
       <p class="fs-4 fw-medium m-0">Lista Conductores</p>
-      <Pagination :pageSize="pageSize" @update:pageSize="updatePageSize" @update:items="updateItems" @update:totalItems="updateTotalItems" @update:currentPage="updateCurrentPage" @update:totalPages="updateTotalPages"/>
     </div>
     <div class="divider"></div>
-    <div class="p-3 "> 
+    <div class="p-3">
       <div class="dw-table-controls d-flex align-items-center gap-2">
-        <!-- @change="updateItemsPerPage" -->
         <select @change="updatePageSize" id="itemsPerPage" class="py-1 px-1">
           <option value="10">10</option>
           <option value="20">20</option>
@@ -58,11 +67,12 @@ const formatDate = (date) => {
         </select>
         <label for="itemsPerPage">Por página</label>
         <input type="text" placeholder="Buscar..." class="search-input ms-auto px-2" />
+        <Pagination :pagination="pagination" @change-page="changePage" />
       </div>
     </div>
     <div class="divider"></div>
     <!-- Paso como slots para items los items que se van a mostrar en la tabla para la pagina actual -->
-    <DwTable :items >
+    <DwTable :items="content">
       <template v-slot:header>
         <th class="p-3">Nombre</th>
         <th class="p-3">Identificacion</th>
@@ -74,12 +84,12 @@ const formatDate = (date) => {
         <td class="p-3">{{ item.nombre }}</td>
         <td class="p-3">{{ item.identificacion }}</td>
         <td class="p-3">{{ item.licencia }}</td>
-        <td class="p-3">{{ item.experiencia.categorias.map(categoria => categoria.tipo).join(', ') }}</td>
+        <td class="p-3">
+          {{ item.experiencia.categorias.map((categoria) => categoria.tipo).join(', ') }}
+        </td>
         <td class="p-3">{{ formatDate(item.fechaCaducidad) }}</td>
       </template>
     </DwTable>
-    <div class="d-flex justify-content-between align-items-start px-3 pb-3">
-      <span>De {{ (items.length * currentPage) - items.length + 1 }} a {{ items.length * currentPage }} de {{ totalItems }} registros</span>
-    </div>
+    <div class="d-flex justify-content-between align-items-start px-3 pb-3"></div>
   </div>
 </template>
