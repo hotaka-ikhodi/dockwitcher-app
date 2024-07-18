@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { format } from 'date-fns';
 import DwTable from '@/components/DwTable.vue';
-import TestPagination from '@/components/TestPagination.vue';
+import Pagination from '@/components/Pagination.vue';
 
 const currentPage = ref(1); // pageable.pageNumber
 const totalItems = ref(0);  // totalElements
@@ -45,7 +45,7 @@ const formatDate = (date) => {
   <div class="dw-table-container ">
     <div class="p-3 d-flex justify-content-between">
       <p class="fs-4 fw-medium m-0">Lista Conductores</p>
-      <TestPagination :pageSize="pageSize" @update:pageSize="updatePageSize" @update:items="updateItems" @update:totalItems="updateTotalItems" @update:currentPage="updateCurrentPage" @update:totalPages="updateTotalPages"/>
+      <Pagination :pageSize="pageSize" @update:pageSize="updatePageSize" @update:items="updateItems" @update:totalItems="updateTotalItems" @update:currentPage="updateCurrentPage" @update:totalPages="updateTotalPages"/>
     </div>
     <div class="divider"></div>
     <div class="p-3 "> 

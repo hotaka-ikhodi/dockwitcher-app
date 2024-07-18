@@ -1,31 +1,61 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue'
+import { defineProps, defineEmits, ref} from 'vue'
+import axios from 'axios'
 
 const props = defineProps({
-  currentPage: Number,
-  totalPages: Number
+  pageSize: Number,
 })
 
-const emits = defineEmits(['update:currentPage'])
+const emits = defineEmits(['update:currentPage', 'update:totalItems', 'update:items', 'update:totalPages'])
+
+const PAGES_TO_SHOW = 5
+const currentPage = ref(1)
+const totalPages = ref(0)
+const totalItems = ref(0)
+const items = ref([])
+
+const fetchData = async (page, size) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/conductores`, {
+      params: {
+        page: page - 1, // La API espera que la paginación comience en 0
+        size,
+      }
+    })
+    totalPages.value = response.data.totalPages
+    totalItems.value = response.data.totalElements
+    items.value = response.data.content
+
+    // Emite el evento para actualizar el total de páginas, el total de items y los items
+    emits('update:totalPages', totalPages.value)
+    emits('update:totalItems', totalItems.value) 
+    emits('update:items', items.value) 
+  } catch (error) {
+    console.error('Hubo un error al obtener los datos:', error)
+  }
+}
 
 const changePage = (page) => {
-  page = Math.max(1, Math.min(page, props.totalPages))
+  page = Math.max(1, Math.min(page, totalPages.value))
+  currentPage.value = page
+  fetchData(page, props.pageSize)
   emits('update:currentPage', page)
 }
 const getPagesToShow = () => {
-  const pageRange = 5
-  const startPage = Math.max(1, Math.min(props.currentPage - 2, props.totalPages - pageRange + 1))
+  // Si el total de páginas es menor a 5, muestra todas las páginas sino solo muestra 5
+  const pageRange = totalPages.value < PAGES_TO_SHOW ? totalPages.value : PAGES_TO_SHOW
+  const startPage = Math.max(1, Math.min(currentPage.value - 2, totalPages.value - pageRange + 1))
   return [...Array(pageRange)].map((_, i) => startPage + i)
 }
 
 const getPageStyles = (page) => {
   return {
-    'background-color': page === props.currentPage ? 'rgb(246, 55, 93)' : 'transparent',
-    color: page === props.currentPage ? '#fff' : '#333'
+    'background-color': page === currentPage.value ? 'rgb(246, 55, 93)' : 'transparent',
+    color: page === currentPage.value ? '#fff' : '#333'
   }
 }
 
-const PAGES_TO_SHOW = 5
+fetchData(currentPage.value, props.pageSize)
 </script>
 
 <template>
